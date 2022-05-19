@@ -1,0 +1,22 @@
+{
+  "name": "403",
+  "version": "1.0.0",
+  "description": "군생활을 위한 유틸리티 어플리케이션",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halionaz/403.git"
+  },
+  "author": "halion",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/halionaz/403/issues"
+  },
+  "homepage": "https://github.com/halionaz/403#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
