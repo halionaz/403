@@ -1,0 +1,33 @@
+.circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  z-index: 0;
+}
+.expire {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  z-index: 10;
+}
+.div {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 7.5px;
+}
+.qty {
+  position: absolute;
+  right: 0;
+  height: 17px;
+  width: 17px;
+  border-radius: 9px;
+  background-color: #ff271a;
+  color: white;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+  z-index: 50;
+}
