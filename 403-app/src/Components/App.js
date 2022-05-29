@@ -4,13 +4,15 @@ import Header from "./Header";
 import Main from "./Main";
 import "./style/App.css";
 
+const today = new Date();
+
 function App() {
-    const [highlight, setHighlight] = useState(new Date());
+    const [highlight, setHighlight] = useState(today);
     return (
         <div className="App">
-            <Header highlight={highlight} setHighlight={setHighlight} />
+            <Header today={today} highlight={highlight} setHighlight={setHighlight} />
             <Main highlight={highlight} setHighlight={setHighlight} />
-            <Footer />
+            <Footer today={today} highlight={highlight} />
         </div>
     );
 }
