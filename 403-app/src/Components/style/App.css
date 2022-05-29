@@ -1,0 +1,19 @@
+@import "./reset.css";
+
+html{
+    font-family: "NotoSansR";
+}
+button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.App{
+    display: flex;
+    flex-direction: column;
+}
