@@ -8,4 +8,5 @@
     bottom: 0;
     padding: 0 40px;
     background-color: rgb(247, 246, 243);
+    z-index: -1;
 }

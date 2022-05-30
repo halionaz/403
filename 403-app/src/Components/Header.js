@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Point from "./Point";
 import Vacation from "./Vacation";
 
-export default function Header({ highlight, setHighlight, today }) {
+export default function Header({ highlight, setHighlight, today, pointData, usedPoint }) {
     const [isPointOn, setIsPointOn] = useState(false);
     const [isVacationOn, setIsVacationOn] = useState(false);
 
@@ -67,7 +67,7 @@ export default function Header({ highlight, setHighlight, today }) {
                     🏠 휴가
                 </button>
             </div>
-            <Point isOn={isPointOn} />
+            <Point isOn={isPointOn} data={pointData} usedPoint={usedPoint} />
             <Vacation isOn={isVacationOn} />
         </header>
     );

@@ -2,6 +2,10 @@
 
 html{
     font-family: "NotoSansR";
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
 }
 button{
     -webkit-appearance: none;
