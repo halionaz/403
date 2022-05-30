@@ -42,6 +42,8 @@ export default function Header({ highlight, setHighlight, today }) {
                     onClick={() => {
                         if (!isPointOn && isVacationOn) {
                             // 둘다 켜져야 되는 경우
+                            // useState의 상태 변경은 시간이 걸리므로, set함수 뒤에 이걸 넣으면 isPointOn이 아직 안바뀜
+                            // 따라서 하기 전에 조건 판단
                             setIsVacationOn(false);
                         }
                         setIsPointOn((prev) => {
@@ -55,7 +57,6 @@ export default function Header({ highlight, setHighlight, today }) {
                     className={isVacationOn ? "activeBtn" : ""}
                     onClick={() => {
                         if (isPointOn && !isVacationOn) {
-                            // 둘다 켜져 있으면
                             setIsPointOn(false);
                         }
                         setIsVacationOn((prev) => {
