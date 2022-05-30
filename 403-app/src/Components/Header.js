@@ -2,9 +2,11 @@ import style from "./style/Header.module.css";
 import "./style/Header.css";
 import { useEffect, useState } from "react";
 import Point from "./Point";
+import Vacation from "./Vacation";
 
 export default function Header({ highlight, setHighlight, today }) {
     const [isPointOn, setIsPointOn] = useState(false);
+    const [isVacationOn, setIsVacationOn] = useState(false);
 
     useEffect(() => {
         if (
@@ -35,8 +37,13 @@ export default function Header({ highlight, setHighlight, today }) {
                 </div>
             </div>
             <div className={`${style.item} ${style.benefits}`}>
-                <button className={(isPointOn ? "activeBtn" : "")}
+                <button
+                    className={isPointOn ? "activeBtn" : ""}
                     onClick={() => {
+                        if (!isPointOn && isVacationOn) {
+                            // 둘다 켜져야 되는 경우
+                            setIsVacationOn(false);
+                        }
                         setIsPointOn((prev) => {
                             return !prev;
                         });
@@ -44,9 +51,23 @@ export default function Header({ highlight, setHighlight, today }) {
                 >
                     ⭐ 가점
                 </button>
-                <button>🏠 휴가</button>
+                <button
+                    className={isVacationOn ? "activeBtn" : ""}
+                    onClick={() => {
+                        if (isPointOn && !isVacationOn) {
+                            // 둘다 켜져 있으면
+                            setIsPointOn(false);
+                        }
+                        setIsVacationOn((prev) => {
+                            return !prev;
+                        });
+                    }}
+                >
+                    🏠 휴가
+                </button>
             </div>
             <Point isOn={isPointOn} />
+            <Vacation isOn={isVacationOn} />
         </header>
     );
 }
