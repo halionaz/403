@@ -1,5 +1,5 @@
-import style from "./style/Header.module.css";
-import "./style/Header.css";
+import style from "../style/Header.module.css";
+import "../style/Header.css";
 import { useEffect, useState } from "react";
 import Point from "./Point";
 import Vacation from "./Vacation";

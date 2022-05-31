@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import style from "./style/Point.module.css";
+import style from "../style/Point.module.css";
 
 export default function Point({ isOn, data, usedPoint }) {
     const [total, setTotal] = useState(0);

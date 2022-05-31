@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Footer from "./Footer";
-import Header from "./Header";
-import Main from "./Main";
+import Footer from "./Parts/Footer";
+import Header from "./Parts/Header";
+import Main from "./Parts/Main";
 import "./style/App.css";
 import { pointData, usedPoint } from "./secret/DB";
 
