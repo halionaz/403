@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import style from "../../style/Point.module.css";
+import PointEdit from "./PointEdit";
+import PointLi from "./PointLi";
 
 export default function Point({ isOn, data, usedPoint }) {
     const [total, setTotal] = useState(0);
-    const [dateData, setDateData] = useState("2022-05-31");
-    const [visible, setVisivle] = useState(false);
+    const [dateData, setDateData] = useState("0000-00-00");
+    const [timer, setTimer] = useState(null);
+    const [selected, setSelected] = useState(false);
 
     useEffect(() => {
         // 총점 업데이트
@@ -24,12 +27,8 @@ export default function Point({ isOn, data, usedPoint }) {
             className={`modal ${style.Point}`}
             style={{ display: isOn ? "flex" : "none" }}
         >
-            <div
-                className={style.dateModal}
-                style={{ display: visible ? "block" : "none" }}
-            >
-                {dateData}
-            </div>
+            <div className={style.dateModal}>{dateData}</div>
+            <PointEdit selected={selected} setSelected={setSelected} />
             <div className={style.top}>
                 <h2 className={style.totalScore}>
                     {total}
@@ -44,26 +43,16 @@ export default function Point({ isOn, data, usedPoint }) {
                         ?.filter((event) => event.issued)
                         .map((event, ind) => {
                             return (
-                                <li
-                                    className={style.li}
-                                    style={{
-                                        background: "rgba(46, 170, 220, 0.1)",
-                                    }}
-                                    onClick={() => {
-                                        // 가점 수정, 삭제 모달 띄워줌
-                                        alert("가점 수정?");
-                                    }}
+                                <PointLi
                                     key={ind}
-                                    onMouseOver={() => {
-                                        setVisivle(true);
-                                        setDateData(event.date.slice(0, 10));
-                                    }}
-                                    onMouseOut={() => {
-                                        setVisivle(false);
-                                    }}
-                                >
-                                    {event.title} :: {event.point}점
-                                </li>
+                                    type={"내역"}
+                                    setDateData={setDateData}
+                                    event={event}
+                                    timer={timer}
+                                    setTimer={setTimer}
+                                    sel = {selected}
+                                    setSel = {setSelected}
+                                />
                             );
                         })}
                 </ul>
@@ -73,20 +62,16 @@ export default function Point({ isOn, data, usedPoint }) {
                         ?.filter((event) => !event.issued)
                         .map((event, ind) => {
                             return (
-                                <li
-                                    className={style.li}
-                                    style={{
-                                        backgroundColor:
-                                            "rgb(235, 87, 87, 0.1)",
-                                    }}
+                                <PointLi
                                     key={ind}
-                                    onClick={() => {
-                                        // 가점 승인 항목으로 이동, 수정, 삭제 매커니즘
-                                        alert("가점 승인?");
-                                    }}
-                                >
-                                    {event.title} :: {event.point}점
-                                </li>
+                                    type={"받을 가점"}
+                                    setDateData={setDateData}
+                                    event={event}
+                                    timer={timer}
+                                    setTimer={setTimer}
+                                    sel = {selected}
+                                    setSel = {setSelected}
+                                />
                             );
                         })}
                 </ul>
