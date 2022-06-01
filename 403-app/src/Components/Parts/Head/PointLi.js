@@ -8,7 +8,7 @@ const PointLi = ({
     timer,
     setTimer,
     sel,
-    setSel,
+    setSel, setSelectedEvent
 }) => {
     const [opacity, setOpacity] = useState("0.1");
     return (
@@ -24,6 +24,7 @@ const PointLi = ({
                 // 가점 수정, 삭제 모달 띄워줌
                 setSel(true);
                 setOpacity("0.1");
+                setSelectedEvent(event);
             }}
             onMouseOver={() => {
                 if (!sel) {

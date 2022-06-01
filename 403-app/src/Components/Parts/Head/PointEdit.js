@@ -1,6 +1,6 @@
 import style from "../../style/PointEdit.module.css";
 
-const PointEdit = ({ selected, setSelected }) => {
+const PointEdit = ({ selected, setSelected, selectedEvent }) => {
     return (
         <div
             className={style.PointEditModal}
@@ -8,7 +8,9 @@ const PointEdit = ({ selected, setSelected }) => {
             onClick={() => {
                 setSelected(false);
             }}
-        ></div>
+        >
+            <h3 className={style.title}>{selectedEvent?.title}</h3>
+        </div>
     );
 };
 

@@ -8,6 +8,7 @@ export default function Point({ isOn, data, usedPoint }) {
     const [dateData, setDateData] = useState("0000-00-00");
     const [timer, setTimer] = useState(null);
     const [selected, setSelected] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
     useEffect(() => {
         // 총점 업데이트
@@ -28,7 +29,7 @@ export default function Point({ isOn, data, usedPoint }) {
             style={{ display: isOn ? "flex" : "none" }}
         >
             <div className={style.dateModal}>{dateData}</div>
-            <PointEdit selected={selected} setSelected={setSelected} />
+            <PointEdit selected={selected} setSelected={setSelected} selectedEvent={selectedEvent} />
             <div className={style.top}>
                 <h2 className={style.totalScore}>
                     {total}
@@ -52,6 +53,7 @@ export default function Point({ isOn, data, usedPoint }) {
                                     setTimer={setTimer}
                                     sel = {selected}
                                     setSel = {setSelected}
+                                    setSelectedEvent = {setSelectedEvent}
                                 />
                             );
                         })}
@@ -71,9 +73,15 @@ export default function Point({ isOn, data, usedPoint }) {
                                     setTimer={setTimer}
                                     sel = {selected}
                                     setSel = {setSelected}
+                                    setSelectedEvent = {setSelectedEvent}
                                 />
                             );
                         })}
+                    <li>
+                        <div className={style.plus}>
+                            <ion-icon name="add-circle"></ion-icon>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

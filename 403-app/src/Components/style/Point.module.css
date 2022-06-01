@@ -51,3 +51,13 @@
     border-radius: 999px;
 
 }
+
+.plus{
+    display: inline;
+    color : rgb(235, 87, 87, 0.5);
+    font-size: 30px;
+    cursor: pointer;   
+}
+.plus:hover{
+    color : rgb(235, 87, 87, 0.7);
+}
