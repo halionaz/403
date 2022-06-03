@@ -8,7 +8,7 @@ const PointLi = ({
     timer,
     setTimer,
     sel,
-    setSel, setSelectedEvent
+    setSel, setSelectedEvent, setVisible
 }) => {
     const [opacity, setOpacity] = useState("0.1");
     return (
@@ -29,6 +29,7 @@ const PointLi = ({
             onMouseOver={() => {
                 if (!sel) {
                     setOpacity("0.5");
+                    setVisible(true);
                     setDateData(event.date.slice(0, 10));
                     if (timer !== null) {
                         clearTimeout(timer);
@@ -40,7 +41,7 @@ const PointLi = ({
                     setOpacity("0.1");
                     setTimer(
                         setTimeout(() => {
-                            setDateData("0000-00-00");
+                            setVisible(false);
                         }, 1000)
                     );
                 }

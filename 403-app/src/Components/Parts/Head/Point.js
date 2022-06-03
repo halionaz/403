@@ -6,6 +6,7 @@ import PointLi from "./PointLi";
 export default function Point({ isOn, data, usedPoint }) {
     const [total, setTotal] = useState(0);
     const [dateData, setDateData] = useState("0000-00-00");
+    const [visible, setVisible] = useState(false);
     const [timer, setTimer] = useState(null);
     const [selected, setSelected] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
@@ -28,8 +29,17 @@ export default function Point({ isOn, data, usedPoint }) {
             className={`modal ${style.Point}`}
             style={{ display: isOn ? "flex" : "none" }}
         >
-            <div className={style.dateModal}>{dateData}</div>
-            <PointEdit selected={selected} setSelected={setSelected} selectedEvent={selectedEvent} />
+            <div
+                className={style.dateModal}
+                style={{ visibility: visible ? "visible" : "hidden" }}
+            >
+                {dateData}
+            </div>
+            <PointEdit
+                selected={selected}
+                setSelected={setSelected}
+                selectedEvent={selectedEvent}
+            />
             <div className={style.top}>
                 <h2 className={style.totalScore}>
                     {total}
@@ -51,9 +61,10 @@ export default function Point({ isOn, data, usedPoint }) {
                                     event={event}
                                     timer={timer}
                                     setTimer={setTimer}
-                                    sel = {selected}
-                                    setSel = {setSelected}
-                                    setSelectedEvent = {setSelectedEvent}
+                                    sel={selected}
+                                    setSel={setSelected}
+                                    setSelectedEvent={setSelectedEvent}
+                                    setVisible={setVisible}
                                 />
                             );
                         })}
@@ -71,9 +82,10 @@ export default function Point({ isOn, data, usedPoint }) {
                                     event={event}
                                     timer={timer}
                                     setTimer={setTimer}
-                                    sel = {selected}
-                                    setSel = {setSelected}
-                                    setSelectedEvent = {setSelectedEvent}
+                                    sel={selected}
+                                    setSel={setSelected}
+                                    setSelectedEvent={setSelectedEvent}
+                                    setVisible={setVisible}
                                 />
                             );
                         })}

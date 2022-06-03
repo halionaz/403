@@ -3,7 +3,7 @@ import Footer from "./Parts/Footer";
 import Header from "./Parts/Head/Header";
 import Main from "./Parts/Main";
 import "./style/App.css";
-import { pointData, usedPoint } from "./secret/DB";
+import { pointData, usedPoint } from "../secret/DB";
 
 const today = new Date();
 
