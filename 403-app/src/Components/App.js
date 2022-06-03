@@ -14,13 +14,31 @@ function App() {
 
     useEffect(() => {
         // 서버에서 가점 데이터 가져옴
-        setPointHistory(JSON.parse(pointData));
+        setPointHistory(
+            // 날짜 순으로 정렬
+            JSON.parse(pointData).sort((a, b) => {
+                if (a.date < b.date) {
+                    return -1;
+                }
+                if (b.date < a.date) {
+                    return 1;
+                }
+                return 0;
+            })
+        );
+
         setUsedP(usedPoint);
     }, []);
 
     return (
         <div className="App">
-            <Header today={today} highlight={highlight} setHighlight={setHighlight} usedPoint={usedP} pointData = {pointHistory} />
+            <Header
+                today={today}
+                highlight={highlight}
+                setHighlight={setHighlight}
+                usedPoint={usedP}
+                pointData={pointHistory}
+            />
             <Main highlight={highlight} setHighlight={setHighlight} />
             <Footer today={today} highlight={highlight} />
         </div>

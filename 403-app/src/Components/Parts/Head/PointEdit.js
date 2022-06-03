@@ -10,6 +10,11 @@ const PointEdit = ({ selected, setSelected, selectedEvent }) => {
             }}
         >
             <h3 className={style.title}>{selectedEvent?.title}</h3>
+            {selectedEvent?.issued === false && (
+                <button className={style.transform} onClick={()=>{
+                    selectedEvent.issued = true;
+                }}>가점 수령</button>
+            )}
         </div>
     );
 };

@@ -30,7 +30,7 @@ const PointLi = ({
                 if (!sel) {
                     setOpacity("0.5");
                     setVisible(true);
-                    setDateData(event.date.slice(0, 10));
+                    setDateData(event.date);
                     if (timer !== null) {
                         clearTimeout(timer);
                     }
