@@ -3,7 +3,7 @@ import Footer from "./Parts/Footer";
 import Header from "./Parts/Head/Header";
 import Main from "./Parts/Main";
 import "./style/App.css";
-import { pointData, usedPoint } from "../secret/DB";
+import { pointData, usedPoint, enlistmentDate } from "../secret/DB";
 
 const today = new Date();
 
@@ -11,6 +11,7 @@ function App() {
     const [highlight, setHighlight] = useState(today);
     const [pointHistory, setPointHistory] = useState(null);
     const [usedP, setUsedP] = useState(0);
+    const [startDate, setStartDate] = useState(null);
 
     useEffect(() => {
         // 서버에서 가점 데이터 가져옴
@@ -28,6 +29,7 @@ function App() {
         );
 
         setUsedP(usedPoint);
+        setStartDate(enlistmentDate);
     }, []);
 
     return (
@@ -40,7 +42,12 @@ function App() {
                 pointData={pointHistory}
             />
             <Main highlight={highlight} setHighlight={setHighlight} />
-            <Footer today={today} highlight={highlight} />
+            <Footer
+                today={today}
+                highlight={highlight}
+                start={startDate}
+                setStart={setStartDate}
+            />
         </div>
     );
 }

@@ -9,4 +9,42 @@
     padding: 0 40px;
     background-color: rgb(247, 246, 243);
     z-index: -1;
+
+    display: flex;
+}
+
+.dDay{
+    flex : 1 1 0;
+}
+.progress{
+    background-color: rgba(55, 53, 47, 0.08);
+    flex : 4 4 0;
+
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.progressBar{
+    height: 25px;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.459);
+}
+.name{
+    color: whitesmoke;
+    font-size: 13px;
+}
+.pb{
+
+    height: 100%;
+    border-radius: 999px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+    padding-right: 10px;
+}
+
+.blank{
+    flex : 1 1 0;
 }
