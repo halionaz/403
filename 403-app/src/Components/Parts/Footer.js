@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import style from "../style/Footer.module.css";
 
 export default function Footer({ today, highlight, start, setStart }) {
+    // 얘네 달력에도 필요해서 왠지 App.js로 꺼내가야 될 듯 싶다...
+    // 일단 훗날 일이니 PASS!
+
     const todayDate = useMemo(() => {
         return new Date(today);
     }, [today]);
@@ -32,6 +35,7 @@ export default function Footer({ today, highlight, start, setStart }) {
         temp.setMonth(temp.getMonth() + 14);
         return temp;
     }, [start]);
+
     const [entirePrgs, setEntirePrgs] = useState(0);
     const [classPrgs, setClassPrgs] = useState(0);
     const [curClass, setCurClass] = useState("이병");
@@ -101,7 +105,9 @@ export default function Footer({ today, highlight, start, setStart }) {
                 <div className={style.d}>D-{remain}</div>
                 <div className={style.dates}>
                     <div className={style.date}>🐣 {start}</div>
-                    <div className={style.date}>🐓 {endDate.getFullYear()}-{(endDate.getMonth() + 1).toString().padStart(2, "0")}-
+                    <div className={style.date}>
+                        🐓 {endDate.getFullYear()}-
+                        {(endDate.getMonth() + 1).toString().padStart(2, "0")}-
                         {endDate.getDate().toString().padStart(2, "0")}
                     </div>
                 </div>
@@ -132,7 +138,17 @@ export default function Footer({ today, highlight, start, setStart }) {
                     </div>
                 </div>
             </div>
-            <div className={style.blank}></div>
+            <div className={style.etc}>
+                <div className={style.btn}>
+                    <ion-icon name="settings"></ion-icon>
+                </div>
+                <div className={style.btn}>
+                    <ion-icon name="information-circle"></ion-icon>
+                </div>
+                <div className={style.btn}>
+                    <ion-icon name="help-circle"></ion-icon>
+                </div>
+            </div>
         </div>
     );
 }
