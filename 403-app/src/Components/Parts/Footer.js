@@ -1,26 +1,49 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import style from "../style/Footer.module.css";
 
 export default function Footer({ today, highlight, start, setStart }) {
-    const todayDate = new Date(today);
-    // const highlightDate = new Date(highlight);
-    const startDate = new Date(start);
-    const endDate = new Date(start);
-    endDate.setMonth(startDate.getMonth() + 21);
-    endDate.setDate(endDate.getDate()-1);
-    const privateDate = new Date(start);
-    privateDate.setMonth(startDate.getMonth() + 2);
-    const corporalDate = new Date(start);
-    corporalDate.setMonth(startDate.getMonth() + 8);
-    const sgtDate = new Date(start);
-    sgtDate.setMonth(startDate.getMonth() + 14);
+    const todayDate = useMemo(() => {
+        return new Date(today);
+    }, [today]);
+    // const highlightDate = useMemo(() => {
+    //     return new Date(highlight);
+    // }, [highlight]);
+    const startDate = useMemo(() => {
+        return new Date(start);
+    }, [start]);
+    const endDate = useMemo(() => {
+        const temp = new Date(start);
+        temp.setMonth(temp.getMonth() + 21);
+        temp.setDate(temp.getDate() - 1);
+        return temp;
+    }, [start]);
+    const privateDate = useMemo(() => {
+        const temp = new Date(start);
+        temp.setMonth(temp.getMonth() + 2);
+        return temp;
+    }, [start]);
+    const corporalDate = useMemo(() => {
+        const temp = new Date(start);
+        temp.setMonth(temp.getMonth() + 8);
+        return temp;
+    }, [start]);
+    const sgtDate = useMemo(() => {
+        const temp = new Date(start);
+        temp.setMonth(temp.getMonth() + 14);
+        return temp;
+    }, [start]);
     const [entirePrgs, setEntirePrgs] = useState(0);
     const [classPrgs, setClassPrgs] = useState(0);
     const [curClass, setCurClass] = useState("이병");
     const [remain, setRemain] = useState(0);
 
     useEffect(() => {
-        setRemain(Math.floor((endDate.getTime() - todayDate.getTime())/(1000*60*60*24)));
+        setRemain(
+            Math.floor(
+                (endDate.getTime() - todayDate.getTime()) /
+                    (1000 * 60 * 60 * 24)
+            )
+        );
         // 전체 퍼센테이지 계산
         setEntirePrgs(
             Math.round(
@@ -78,7 +101,10 @@ export default function Footer({ today, highlight, start, setStart }) {
                 <div className={style.d}>D-{remain}</div>
                 <div className={style.dates}>
                     <div className={style.date}>{start}</div>
-                    <div className={style.date}>{endDate.getFullYear()}-{endDate.getMonth()+1}-{endDate.getDate()}</div>
+                    <div className={style.date}>
+                        {endDate.getFullYear()}-{endDate.getMonth() + 1}-
+                        {endDate.getDate()}
+                    </div>
                 </div>
             </div>
             <div className={style.progress}>
