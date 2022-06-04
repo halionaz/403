@@ -100,9 +100,8 @@ export default function Footer({ today, highlight, start, setStart }) {
             <div className={style.dDay}>
                 <div className={style.d}>D-{remain}</div>
                 <div className={style.dates}>
-                    <div className={style.date}>{start}</div>
-                    <div className={style.date}>
-                        {endDate.getFullYear()}-{(endDate.getMonth() + 1).toString().padStart(2, "0")}-
+                    <div className={style.date}>🐣 {start}</div>
+                    <div className={style.date}>🐓 {endDate.getFullYear()}-{(endDate.getMonth() + 1).toString().padStart(2, "0")}-
                         {endDate.getDate().toString().padStart(2, "0")}
                     </div>
                 </div>
