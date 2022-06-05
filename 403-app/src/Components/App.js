@@ -45,9 +45,7 @@ function App() {
     }, [pointHistory]);
 
     useEffect(() => {
-
         setUsedP(parseInt(totalPoint / 15) * 15);
-
     }, [totalPoint]);
 
     return (

@@ -4,7 +4,7 @@ import Calendar from "./Calendar";
 export default function Main({ highlight, setHighlight }) {
     return <div className={style.Main} >
         <div className={style.bar}></div>
-        <Calendar />
+        <Calendar highlight={highlight} setHighlight={setHighlight} />
         <div className={style.bar}></div>
     </div>;
 }
