@@ -20,6 +20,12 @@
     text-align: center;
     border-radius:5px
 }
+.day:nth-child(7n+1) {
+    color: #ed2a61;
+}
+.day:nth-child(7n){
+    color: #3c6ffa;
+}
 .dates{
     display: flex;
     flex-flow: wrap;
