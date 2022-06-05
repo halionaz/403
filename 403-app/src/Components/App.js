@@ -3,7 +3,7 @@ import Footer from "./Parts/Footer";
 import Header from "./Parts/Head/Header";
 import Main from "./Parts/Main";
 import "./style/App.css";
-import { pointData, usedPoint, enlistmentDate } from "../secret/DB";
+import { pointData, enlistmentDate } from "../secret/DB";
 
 const today = new Date();
 
@@ -12,6 +12,7 @@ function App() {
     const [pointHistory, setPointHistory] = useState(null);
     const [usedP, setUsedP] = useState(0);
     const [startDate, setStartDate] = useState(null);
+    const [totalPoint, setTotalPoint] = useState(0);
 
     useEffect(() => {
         // 서버에서 가점 데이터 가져옴
@@ -27,10 +28,27 @@ function App() {
                 return 0;
             })
         );
-
-        setUsedP(usedPoint);
         setStartDate(enlistmentDate);
     }, []);
+
+    useEffect(() => {
+        // 총 가점 계산
+        if (pointHistory !== null) {
+            let sum = 0;
+            for (let i = 0; i < pointHistory.length; i++) {
+                if (pointHistory[i].issued) {
+                    sum += pointHistory[i].point;
+                }
+            }
+            setTotalPoint(sum);
+        }
+    }, [pointHistory]);
+
+    useEffect(() => {
+
+        setUsedP(parseInt(totalPoint / 15) * 15);
+
+    }, [totalPoint]);
 
     return (
         <div className="App">
@@ -40,6 +58,7 @@ function App() {
                 setHighlight={setHighlight}
                 usedPoint={usedP}
                 pointData={pointHistory}
+                totalPoint={totalPoint}
             />
             <Main highlight={highlight} setHighlight={setHighlight} />
             <Footer

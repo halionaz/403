@@ -1,28 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "../../style/Point.module.css";
 import PointEdit from "./PointEdit";
 import PointLi from "./PointLi";
 
-export default function Point({ isOn, data, usedPoint }) {
-    const [total, setTotal] = useState(0);
+export default function Point({ isOn, data, usedPoint, totalPoint }) {
     const [dateData, setDateData] = useState("0000-00-00");
     const [visible, setVisible] = useState(false);
     const [timer, setTimer] = useState(null);
     const [selected, setSelected] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
-
-    useEffect(() => {
-        // 총점 업데이트
-        if (data !== null) {
-            let sum = 0;
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].issued) {
-                    sum += data[i].point;
-                }
-            }
-            setTotal(sum);
-        }
-    }, [data]);
 
     return (
         <div
@@ -42,10 +28,12 @@ export default function Point({ isOn, data, usedPoint }) {
             />
             <div className={style.top}>
                 <h2 className={style.totalScore}>
-                    {total}
+                    {totalPoint}
                     <span className={style.span}>점</span>
                 </h2>
-                <div className={style.remain}>잔여 : {total - usedPoint}점</div>
+                <div className={style.remain}>
+                    잔여 : {totalPoint - usedPoint}점
+                </div>
             </div>
             <div className={style.history}>
                 <h3 className={style.historyTitle}>내역</h3>
