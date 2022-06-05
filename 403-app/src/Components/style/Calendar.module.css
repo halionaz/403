@@ -1,5 +1,7 @@
 .Calendar{
     flex: 4 4 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .days{
@@ -17,4 +19,9 @@
     font-size: 12px;
     text-align: center;
     border-radius:5px
+}
+.dates{
+    display: flex;
+    flex-flow: wrap;
+    flex: 1 1 0;
 }

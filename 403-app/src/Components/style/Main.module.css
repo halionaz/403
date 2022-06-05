@@ -1,5 +1,6 @@
 .Main{
-    padding : 60px 40px 0 40px;
+    height: 100%;
+    padding : 60px 40px 100px 40px;
     display: flex;
 }
 .bar{
