@@ -3,8 +3,17 @@ import "../../style/Header.css";
 import { useEffect, useState } from "react";
 import Point from "./Point";
 import Vacation from "./Vacation";
+import Notice from "./Notice";
 
-export default function Header({ highlight, setHighlight, today, pointData, usedPoint, totalPoint }) {
+export default function Header({
+    highlight,
+    setHighlight,
+    today,
+    pointData,
+    usedPoint,
+    totalPoint,
+}) {
+    const [isNoticeOn, setIsNoticeOn] = useState(false);
     const [isPointOn, setIsPointOn] = useState(false);
     const [isVacationOn, setIsVacationOn] = useState(false);
 
@@ -27,7 +36,16 @@ export default function Header({ highlight, setHighlight, today, pointData, used
                     ⛔ 403
                     <span style={{ fontWeight: "300" }}> - for bidden</span>
                 </div>
-                <button className={style.notice}>📢 공지</button>
+                <button
+                    className={isNoticeOn ? "activeBtn" : ""}
+                    onClick={() => {
+                        setIsNoticeOn((prev) => {
+                            return !prev;
+                        });
+                    }}
+                >
+                    📢 공지
+                </button>
                 <div className={style.notice}></div>
             </div>
             <div className={`${style.item} ${style.mon}`}>
@@ -67,7 +85,13 @@ export default function Header({ highlight, setHighlight, today, pointData, used
                     🏠 휴가
                 </button>
             </div>
-            <Point isOn={isPointOn} data={pointData} usedPoint={usedPoint} totalPoint={totalPoint} />
+            <Notice isOn={isNoticeOn} />
+            <Point
+                isOn={isPointOn}
+                data={pointData}
+                usedPoint={usedPoint}
+                totalPoint={totalPoint}
+            />
             <Vacation isOn={isVacationOn} />
         </header>
     );
