@@ -36,7 +36,6 @@ const Calendar = ({ highlight, setHighlight }) => {
         setPrevDate(startDay?.getDate());
         setPrevDay(startDay?.getDay());
     }, [startDay]);
-
     useEffect(() => {
         setNextDate(endDay?.getDate());
         setNextDay(endDay?.getDay());
@@ -47,7 +46,12 @@ const Calendar = ({ highlight, setHighlight }) => {
         setPrevCal([]);
         for (let i = prevDate - prevDay; i <= prevDate; i++) {
             setPrevCal((prev) => {
-                return [...prev, i];
+                return [
+                    ...prev,
+                    <div key={`prev ${i}`} className={style.day}>
+                        <Day num={i} type={"prev"}></Day>
+                    </div>,
+                ];
             });
         }
     }, [prevDate, prevDay]);
@@ -56,7 +60,12 @@ const Calendar = ({ highlight, setHighlight }) => {
         setCurCal([]);
         for (let i = 1; i <= nextDate; i++) {
             setCurCal((prev) => {
-                return [...prev, i];
+                return [
+                    ...prev,
+                    <div key={`cur ${i}`} className={style.day}>
+                        <Day num={i} type={"cur"}></Day>
+                    </div>,
+                ];
             });
         }
     }, [nextDate]);
@@ -65,7 +74,12 @@ const Calendar = ({ highlight, setHighlight }) => {
         setNextCal([]);
         for (let i = 1; i < (7 - nextDay === 7 ? 0 : 7 - nextDay); i++) {
             setNextCal((prev) => {
-                return [...prev, i];
+                return [
+                    ...prev,
+                    <div key={`next ${i}`} className={style.day}>
+                        <Day num={i} type={"next"}></Day>
+                    </div>,
+                ];
             });
         }
     }, [nextDay]);
@@ -82,27 +96,9 @@ const Calendar = ({ highlight, setHighlight }) => {
                 <div className={style.day}>SAT</div>
             </div>
             <div className={style.dates}>
-                {prevCal.map((date, ind) => {
-                    return (
-                        <div key={ind} className={style.day}>
-                            <Day num={date} type={"prev"}></Day>
-                        </div>
-                    );
-                })}
-                {curCal.map((date, ind) => {
-                    return (
-                        <div key={ind} className={style.day}>
-                            <Day num={date} type={"cur"}></Day>
-                        </div>
-                    );
-                })}
-                {nextCal.map((date, ind) => {
-                    return (
-                        <div key={ind} className={style.day}>
-                            <Day num={date} type={"next"}></Day>
-                        </div>
-                    );
-                })}
+                {prevCal}
+                {curCal}
+                {nextCal}
             </div>
         </div>
     );
