@@ -40,11 +40,18 @@ export default function Footer({ today, highlight, start, setStart }) {
     const [classPrgs, setClassPrgs] = useState(0);
     const [curClass, setCurClass] = useState("이병");
     const [remain, setRemain] = useState(0);
+    const [past, setPast] = useState(0);
 
     useEffect(() => {
         setRemain(
             Math.ceil(
                 (endDate.getTime() - todayDate.getTime()) /
+                    (1000 * 60 * 60 * 24)
+            )
+        );
+        setPast(
+            Math.ceil(
+                (todayDate.getTime() - startDate.getTime()) /
                     (1000 * 60 * 60 * 24)
             )
         );
@@ -102,6 +109,7 @@ export default function Footer({ today, highlight, start, setStart }) {
     return (
         <div className={style.Footer}>
             <div className={style.dDay}>
+                <div className={style.d}>D+{past}</div>
                 <div className={style.d}>D-{remain}</div>
                 <div className={style.dates}>
                     <div className={style.date}>🐣 {start}</div>
