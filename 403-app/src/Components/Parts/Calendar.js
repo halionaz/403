@@ -48,9 +48,7 @@ const Calendar = ({ highlight, setHighlight }) => {
             setPrevCal((prev) => {
                 return [
                     ...prev,
-                    <div key={`prev ${i}`} className={style.day}>
-                        <Day num={i} type={"prev"}></Day>
-                    </div>,
+                    <Day key={`prev ${i}`} num={i} type={"prev"}></Day>,
                 ];
             });
         }
@@ -62,9 +60,7 @@ const Calendar = ({ highlight, setHighlight }) => {
             setCurCal((prev) => {
                 return [
                     ...prev,
-                    <div key={`cur ${i}`} className={style.day}>
-                        <Day num={i} type={"cur"}></Day>
-                    </div>,
+                    <Day key={`cur ${i}`} num={i} type={"cur"}></Day>,
                 ];
             });
         }
@@ -76,9 +72,7 @@ const Calendar = ({ highlight, setHighlight }) => {
             setNextCal((prev) => {
                 return [
                     ...prev,
-                    <div key={`next ${i}`} className={style.day}>
-                        <Day num={i} type={"next"}></Day>
-                    </div>,
+                    <Day key={`next ${i}`} num={i} type={"next"}></Day>,
                 ];
             });
         }
