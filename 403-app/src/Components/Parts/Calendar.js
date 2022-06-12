@@ -5,12 +5,12 @@ import Day from "./Day";
 const Calendar = ({ highlight, setHighlight }) => {
     const [currentYear, setCurrentYear] = useState(0);
     const [currentMonth, setCurrentMonth] = useState(0);
-    // const [currentDate, setCurrentDate] = useState(0);
+    const [currentDate, setCurrentDate] = useState(0);
 
     useEffect(() => {
         setCurrentYear(highlight.getFullYear());
         setCurrentMonth(highlight.getMonth());
-        // setCurrentDate(highlight.getDate());
+        setCurrentDate(highlight.getDate());
     }, [highlight]);
 
     const [startDay, setStartDay] = useState(null);
@@ -48,11 +48,19 @@ const Calendar = ({ highlight, setHighlight }) => {
             setPrevCal((prev) => {
                 return [
                     ...prev,
-                    <Day key={`prev ${i}`} num={i} type={"prev"}></Day>,
+                    <Day
+                        key={`prev ${i}`}
+                        year={currentYear}
+                        month={currentMonth - 1}
+                        num={i}
+                        type={"prev"}
+                        setHighlight={setHighlight}
+                        isHighlight={currentDate === i ? true : false}
+                    ></Day>,
                 ];
             });
         }
-    }, [prevDate, prevDay]);
+    }, [prevDate, prevDay, currentDate, setHighlight, currentMonth, currentYear]);
     useEffect(() => {
         // 이번달 만들기
         setCurCal([]);
@@ -60,11 +68,19 @@ const Calendar = ({ highlight, setHighlight }) => {
             setCurCal((prev) => {
                 return [
                     ...prev,
-                    <Day key={`cur ${i}`} num={i} type={"cur"}></Day>,
+                    <Day
+                        key={`cur ${i}`}
+                        year={currentYear}
+                        month={currentMonth}
+                        num={i}
+                        type={"cur"}
+                        setHighlight={setHighlight}
+                        isHighlight={currentDate === i ? true : false}
+                    ></Day>,
                 ];
             });
         }
-    }, [nextDate]);
+    }, [nextDate, currentDate, setHighlight, currentMonth,currentYear]);
     useEffect(() => {
         // 다음달 만들기
         setNextCal([]);
@@ -72,11 +88,19 @@ const Calendar = ({ highlight, setHighlight }) => {
             setNextCal((prev) => {
                 return [
                     ...prev,
-                    <Day key={`next ${i}`} num={i} type={"next"}></Day>,
+                    <Day
+                        key={`next ${i}`}
+                        year={currentYear}
+                        month={currentMonth+1}
+                        num={i}
+                        type={"next"}
+                        setHighlight={setHighlight}
+                        isHighlight={currentDate === i ? true : false}
+                    ></Day>,
                 ];
             });
         }
-    }, [nextDay]);
+    }, [nextDay, currentDate, setHighlight, currentMonth, currentYear]);
 
     return (
         <div className={style.Calendar}>

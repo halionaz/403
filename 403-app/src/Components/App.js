@@ -48,6 +48,10 @@ function App() {
         setUsedP(parseInt(totalPoint / 15) * 15);
     }, [totalPoint]);
 
+    useEffect(()=>{
+        console.log(highlight);
+    }, [highlight]);
+
     return (
         <div className="App">
             <Header
