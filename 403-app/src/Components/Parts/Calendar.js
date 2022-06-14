@@ -50,8 +50,8 @@ const Calendar = ({ highlight, setHighlight }) => {
                     ...prev,
                     <Day
                         key={`prev ${i}`}
-                        year={currentYear}
-                        month={currentMonth - 1}
+                        year={(currentMonth - 1 >= 0 ? currentYear : currentYear - 1)}
+                        month={(currentMonth - 1 >= 0 ? currentMonth - 1 : 11)}
                         num={i}
                         type={"prev"}
                         setHighlight={setHighlight}
@@ -97,8 +97,8 @@ const Calendar = ({ highlight, setHighlight }) => {
                     ...prev,
                     <Day
                         key={`next ${i}`}
-                        year={currentYear}
-                        month={currentMonth + 1}
+                        year={(currentMonth + 1 > 11 ? currentYear + 1 : currentYear)}
+                        month={(currentMonth + 1 > 11 ? 0 : currentMonth + 1)}
                         num={i}
                         type={"next"}
                         setHighlight={setHighlight}
@@ -108,7 +108,7 @@ const Calendar = ({ highlight, setHighlight }) => {
             });
         }
     }, [nextDay, currentDate, setHighlight, currentMonth, currentYear]);
-    
+
     return (
         <div className={style.Calendar}>
             <div className={style.days}>
