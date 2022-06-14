@@ -55,7 +55,7 @@ const Calendar = ({ highlight, setHighlight }) => {
                         num={i}
                         type={"prev"}
                         setHighlight={setHighlight}
-                        isHighlight={currentDate === i ? true : false}
+                        isHighlight={false}
                     ></Day>,
                 ];
             });
@@ -102,7 +102,7 @@ const Calendar = ({ highlight, setHighlight }) => {
                         num={i}
                         type={"next"}
                         setHighlight={setHighlight}
-                        isHighlight={currentDate === i ? true : false}
+                        isHighlight={false}
                     ></Day>,
                 ];
             });
