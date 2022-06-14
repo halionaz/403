@@ -60,7 +60,14 @@ const Calendar = ({ highlight, setHighlight }) => {
                 ];
             });
         }
-    }, [prevDate, prevDay, currentDate, setHighlight, currentMonth, currentYear]);
+    }, [
+        prevDate,
+        prevDay,
+        currentDate,
+        setHighlight,
+        currentMonth,
+        currentYear,
+    ]);
     useEffect(() => {
         // 이번달 만들기
         setCurCal([]);
@@ -80,18 +87,18 @@ const Calendar = ({ highlight, setHighlight }) => {
                 ];
             });
         }
-    }, [nextDate, currentDate, setHighlight, currentMonth,currentYear]);
+    }, [nextDate, currentDate, setHighlight, currentMonth, currentYear]);
     useEffect(() => {
         // 다음달 만들기
         setNextCal([]);
-        for (let i = 1; i < (7 - nextDay === 7 ? 0 : 7 - nextDay); i++) {
+        for (let i = 1; i <= (6-nextDay); i++) {
             setNextCal((prev) => {
                 return [
                     ...prev,
                     <Day
                         key={`next ${i}`}
                         year={currentYear}
-                        month={currentMonth+1}
+                        month={currentMonth + 1}
                         num={i}
                         type={"next"}
                         setHighlight={setHighlight}
@@ -101,7 +108,7 @@ const Calendar = ({ highlight, setHighlight }) => {
             });
         }
     }, [nextDay, currentDate, setHighlight, currentMonth, currentYear]);
-
+    
     return (
         <div className={style.Calendar}>
             <div className={style.days}>
