@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import style from "../style/Calendar.module.css";
 import Day from "./Day";
 
-const Calendar = ({ highlight, setHighlight }) => {
+const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
     const [currentYear, setCurrentYear] = useState(0);
     const [currentMonth, setCurrentMonth] = useState(0);
     const [currentDate, setCurrentDate] = useState(0);
@@ -24,6 +24,9 @@ const Calendar = ({ highlight, setHighlight }) => {
     const [prevCal, setPrevCal] = useState([]);
     const [curCal, setCurCal] = useState([]);
     const [nextCal, setNextCal] = useState([]);
+
+    const [curMonCalData, setCurMonCalData] = useState(null);
+    const [curMonVacData, setCurMonVacData] = useState(null);
 
     useEffect(() => {
         // 이전 달의 마지막 날 날짜와 요일 구하기
@@ -108,6 +111,14 @@ const Calendar = ({ highlight, setHighlight }) => {
             });
         }
     }, [nextDay, currentDate, setHighlight, currentMonth, currentYear]);
+
+    useEffect(() => {
+        setCurMonCalData(calendarData.filter((data) => {
+            const start = new Date(data.start);
+            const end = new Date(data.end);
+            // start, end가 달력 안에 나오는 범주면 setCurMonCalData에 넣음
+        }))
+    }, [calendarData])
 
     return (
         <div className={style.Calendar}>

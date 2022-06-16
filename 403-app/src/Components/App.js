@@ -57,8 +57,9 @@ function App() {
                 usedPoint={usedP}
                 pointData={pointHistory}
                 totalPoint={totalPoint}
+                vacationData={vacationData}
             />
-            <Main highlight={highlight} setHighlight={setHighlight} />
+            <Main highlight={highlight} setHighlight={setHighlight} calendarData = {calendarData} vacationData={vacationData} />
             <Footer
                 today={today}
                 highlight={highlight}
