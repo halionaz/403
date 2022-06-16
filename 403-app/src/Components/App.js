@@ -3,7 +3,7 @@ import Footer from "./Parts/Footer";
 import Header from "./Parts/Head/Header";
 import Main from "./Parts/Main";
 import "./style/App.css";
-import { pointData, enlistmentDate } from "../secret/DB";
+import { pointData, enlistmentDate, calendarData, vacationData } from "../secret/DB";
 
 const today = new Date();
 
@@ -15,7 +15,7 @@ function App() {
     const [totalPoint, setTotalPoint] = useState(0);
 
     useEffect(() => {
-        // 서버에서 가점 데이터 가져옴
+        // 서버에서 가점 데이터, 입대일, 일정 데이터, 휴가 데이터 가져옴
         setPointHistory(
             // 날짜 순으로 정렬
             JSON.parse(pointData).sort((a, b) => {
@@ -47,10 +47,6 @@ function App() {
     useEffect(() => {
         setUsedP(parseInt(totalPoint / 15) * 15);
     }, [totalPoint]);
-
-    useEffect(()=>{
-        console.log(highlight);
-    }, [highlight]);
 
     return (
         <div className="App">

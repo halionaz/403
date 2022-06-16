@@ -25,7 +25,6 @@ export default function Header({
             )
         ) {
             // 현재의 달과, 보여지고 있는 달이 다르다면 돌아가기 버튼 팝업
-            console.log("선택 날짜와 오늘이 다름.. '오늘로 돌아가기' 팝업 띄워주셈");
         }
     }, [highlight, today]);
 
