@@ -12,7 +12,7 @@
     width: 100%;
     display:flex;
     justify-content: center;
-    color: #999;
+    color: rgb(109, 109, 109);
     font-size: 12px;
     text-align: center;
     border-radius:5px;
@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 .select{
-    background-color: rgb(230, 208, 208);
+    background-color: rgb(255, 145, 145);
 }
 .Day:nth-child(7n+1) {
     background-color: rgba(237, 42, 97, 0.2);
