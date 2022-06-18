@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 .select{
-    background-color: rgb(255, 145, 145);
+    background-color: rgb(235, 87, 87, 0.5);
 }
 .Day:nth-child(7n+1) {
     background-color: rgba(237, 42, 97, 0.2);
