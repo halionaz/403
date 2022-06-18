@@ -25,9 +25,6 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
     const [curCal, setCurCal] = useState([]);
     const [nextCal, setNextCal] = useState([]);
 
-    const [curMonCalData, setCurMonCalData] = useState(null);
-    const [curMonVacData, setCurMonVacData] = useState(null);
-
     useEffect(() => {
         // 이전 달의 마지막 날 날짜와 요일 구하기
         setStartDay(new Date(currentYear, currentMonth, 0));
@@ -53,8 +50,12 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                     ...prev,
                     <Day
                         key={`prev ${i}`}
-                        year={(currentMonth - 1 >= 0 ? currentYear : currentYear - 1)}
-                        month={(currentMonth - 1 >= 0 ? currentMonth - 1 : 11)}
+                        year={
+                            currentMonth - 1 >= 0
+                                ? currentYear
+                                : currentYear - 1
+                        }
+                        month={currentMonth - 1 >= 0 ? currentMonth - 1 : 11}
                         num={i}
                         type={"prev"}
                         setHighlight={setHighlight}
@@ -75,6 +76,14 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
         // 이번달 만들기
         setCurCal([]);
         for (let i = 1; i <= nextDate; i++) {
+            const todayCal = calendarData.filter((data) => {
+                return (
+                    data.start.slice(0, 10) ===
+                    `${currentYear}-${(currentMonth + 1)
+                        .toString()
+                        .padStart(2, "0")}-${i.toString().padStart(2, "0")}`
+                );
+            });
             setCurCal((prev) => {
                 return [
                     ...prev,
@@ -86,22 +95,34 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         type={"cur"}
                         setHighlight={setHighlight}
                         isHighlight={currentDate === i ? true : false}
+                        todayCal={todayCal}
                     ></Day>,
                 ];
             });
         }
-    }, [nextDate, currentDate, setHighlight, currentMonth, currentYear]);
+    }, [
+        nextDate,
+        currentDate,
+        setHighlight,
+        currentMonth,
+        currentYear,
+        calendarData,
+    ]);
     useEffect(() => {
         // 다음달 만들기
         setNextCal([]);
-        for (let i = 1; i <= (6-nextDay); i++) {
+        for (let i = 1; i <= 6 - nextDay; i++) {
             setNextCal((prev) => {
                 return [
                     ...prev,
                     <Day
                         key={`next ${i}`}
-                        year={(currentMonth + 1 > 11 ? currentYear + 1 : currentYear)}
-                        month={(currentMonth + 1 > 11 ? 0 : currentMonth + 1)}
+                        year={
+                            currentMonth + 1 > 11
+                                ? currentYear + 1
+                                : currentYear
+                        }
+                        month={currentMonth + 1 > 11 ? 0 : currentMonth + 1}
                         num={i}
                         type={"next"}
                         setHighlight={setHighlight}
@@ -111,14 +132,6 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
             });
         }
     }, [nextDay, currentDate, setHighlight, currentMonth, currentYear]);
-
-    useEffect(() => {
-        setCurMonCalData(calendarData.filter((data) => {
-            const start = new Date(data.start);
-            const end = new Date(data.end);
-            // start, end가 달력 안에 나오는 범주면 setCurMonCalData에 넣음
-        }))
-    }, [calendarData])
 
     return (
         <div className={style.Calendar}>

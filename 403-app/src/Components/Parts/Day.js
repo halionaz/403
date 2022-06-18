@@ -7,11 +7,13 @@ export default function Day({
     type,
     isHighlight,
     setHighlight,
+    todayCal,
 }) {
+    console.dir(todayCal);
     return (
         <div className={style.Day}>
             <div
-                className={`${style.box} ${isHighlight ? style.select : ''}`}
+                className={`${style.box} ${isHighlight ? style.select : ""}`}
                 onClick={() => {
                     setHighlight(
                         new Date(
@@ -25,6 +27,9 @@ export default function Day({
                 }}
             >
                 {num}
+                <div className={style.todayCal}>
+                    {(todayCal !== undefined && todayCal.length) ? todayCal[0].title : ""}
+                </div>
             </div>
         </div>
     );
