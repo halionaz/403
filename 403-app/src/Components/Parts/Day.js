@@ -26,9 +26,13 @@ export default function Day({
                     );
                 }}
             >
-                {num}
+                <div className={style.num}>{num}</div>
                 <div className={style.todayCal}>
-                    {(todayCal !== undefined && todayCal.length) ? todayCal[0].title : ""}
+                    {todayCal === undefined
+                        ? ""
+                        : todayCal.map((cal) => {
+                              return <div>{cal.title}</div>;
+                          })}
                 </div>
             </div>
         </div>
