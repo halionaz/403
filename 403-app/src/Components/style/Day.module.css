@@ -2,21 +2,21 @@
     width: calc(100% / 7);
     padding: 10px;
     transition : padding 0.1s;
-}
-.Day:hover{
-    padding: 5px;
+    border-radius: 5px;
 }
 .box{
     box-sizing: border-box;
     height: 100%;
     width: 100%;
     display:flex;
-    justify-content: center;
+    align-items: center;
     color: rgb(109, 109, 109);
     font-size: 12px;
     text-align: center;
     border-radius:5px;
     background-color: rgb(247, 246, 243);
+
+    flex-direction: column;
 
     cursor: pointer;
 }
@@ -28,4 +28,7 @@
 }
 .Day:nth-child(7n){
     background-color: rgba(60, 111, 250, 0.2);
+}
+.Day:hover{
+    background-color: rgb(221, 220, 215);
 }
