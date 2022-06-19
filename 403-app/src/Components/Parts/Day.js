@@ -30,13 +30,13 @@ export default function Day({
                 <div className={style.todayCal}>
                     {todayCal === undefined
                         ? ""
-                        : todayCal.map((cal) => {
-                              return <div>{cal.title}</div>;
+                        : todayCal.map((cal, i) => {
+                              return <div key={`cal ${i}`}>{cal.title}</div>;
                           })}
                     {todayVac === undefined
                         ? ""
-                        : todayVac.map((cal) => {
-                              return <div>{cal.title}</div>;
+                        : todayVac.map((cal, i) => {
+                              return <div key={`vac ${i}`}>{cal.title}</div>;
                           })}
                 </div>
             </div>
