@@ -10,7 +10,6 @@ export default function Day({
     todayCal,
     todayVac,
 }) {
-    console.dir(todayCal);
     return (
         <div className={style.Day}>
             <div
