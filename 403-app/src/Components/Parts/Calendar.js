@@ -84,6 +84,26 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         .padStart(2, "0")}-${i.toString().padStart(2, "0")}`
                 );
             });
+            const todayVac = vacationData.filter((data) => {
+                return (
+                    new Date(data.start.slice(0, 10)).getTime() <=
+                        new Date(
+                            `${currentYear}-${(currentMonth + 1)
+                                .toString()
+                                .padStart(2, "0")}-${i
+                                .toString()
+                                .padStart(2, "0")}`
+                        ) &&
+                    new Date(data.end.slice(0, 10)).getTime() >=
+                        new Date(
+                            `${currentYear}-${(currentMonth + 1)
+                                .toString()
+                                .padStart(2, "0")}-${i
+                                .toString()
+                                .padStart(2, "0")}`
+                        )
+                );
+            });
             setCurCal((prev) => {
                 return [
                     ...prev,
@@ -96,6 +116,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         setHighlight={setHighlight}
                         isHighlight={currentDate === i ? true : false}
                         todayCal={todayCal}
+                        todayVac={todayVac}
                     ></Day>,
                 ];
             });
@@ -107,6 +128,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
         currentMonth,
         currentYear,
         calendarData,
+        vacationData,
     ]);
     useEffect(() => {
         // 다음달 만들기

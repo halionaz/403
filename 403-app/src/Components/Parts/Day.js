@@ -8,6 +8,7 @@ export default function Day({
     isHighlight,
     setHighlight,
     todayCal,
+    todayVac,
 }) {
     console.dir(todayCal);
     return (
@@ -31,6 +32,11 @@ export default function Day({
                     {todayCal === undefined
                         ? ""
                         : todayCal.map((cal) => {
+                              return <div>{cal.title}</div>;
+                          })}
+                    {todayVac === undefined
+                        ? ""
+                        : todayVac.map((cal) => {
                               return <div>{cal.title}</div>;
                           })}
                 </div>
