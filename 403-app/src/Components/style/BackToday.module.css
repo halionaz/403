@@ -1,0 +1,23 @@
+.modal{
+    position: absolute;
+    top: 75px;
+    right: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    width: 100px;
+    height: 30px;
+    max-height: 10vh;
+    background-color: rgba(240, 113, 16,0.8);
+    border-radius: 4px;
+    box-shadow: rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;
+    color: white;
+    font-size: 13px;
+    
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.modal:hover{
+    background-color: rgba(240, 113, 16,1);
+}

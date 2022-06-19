@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Point from "./Point";
 import Vacation from "./Vacation";
 import Notice from "./Notice";
+import BackToday from "./BackToday";
 
 export default function Header({
     highlight,
@@ -16,17 +17,24 @@ export default function Header({
     const [isNoticeOn, setIsNoticeOn] = useState(false);
     const [isPointOn, setIsPointOn] = useState(false);
     const [isVacationOn, setIsVacationOn] = useState(false);
+    const [notToday, setNotToday] = useState(false);
 
     useEffect(() => {
         if (
-            !(
-                today.getFullYear() === highlight.getFullYear() &&
-                today.getMonth() === highlight.getMonth()
-            )
+            today.getFullYear() === highlight.getFullYear() &&
+            today.getMonth() === highlight.getMonth() &&
+            today.getDate() === highlight.getDate()
         ) {
-            // 현재의 달과, 보여지고 있는 달이 다르다면 돌아가기 버튼 팝업
+            setNotToday(false);
+        } else {
+            // 하이라이트 된 날짜와 오늘 날짜가 다르다면 오늘로 돌아가기 팝업 띄워줌
+            setNotToday(true);
         }
     }, [highlight, today]);
+
+    useEffect(() => {
+        console.log(notToday);
+    }, [notToday]);
 
     return (
         <header className={style.Header}>
@@ -92,6 +100,11 @@ export default function Header({
                 totalPoint={totalPoint}
             />
             <Vacation isOn={isVacationOn} />
+            <BackToday
+                notToday={notToday}
+                setHighlight={setHighlight}
+                today={today}
+            />
         </header>
     );
 }
