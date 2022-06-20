@@ -45,6 +45,52 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
         // 지난달 만들기
         setPrevCal([]);
         for (let i = prevDate - prevDay; i <= prevDate; i++) {
+            const todayCal = calendarData.filter((data) => {
+                return (
+                    data.start.slice(0, 10) ===
+                    `${
+                        currentMonth - 1 >= 0 ? currentYear : currentYear - 1
+                    }-${((currentMonth - 1 >= 0 ? currentMonth - 1 : 11) + 1)
+                        .toString()
+                        .padStart(2, "0")}-${i.toString().padStart(2, "0")}`
+                );
+            });
+            const todayVac = vacationData.filter((data) => {
+                return (
+                    new Date(data.start.slice(0, 10)).getTime() <=
+                        new Date(
+                            `${
+                                currentMonth - 1 >= 0
+                                    ? currentYear
+                                    : currentYear - 1
+                            }-${(
+                                (currentMonth - 1 >= 0
+                                    ? currentMonth - 1
+                                    : 11) + 1
+                            )
+                                .toString()
+                                .padStart(2, "0")}-${i
+                                .toString()
+                                .padStart(2, "0")}`
+                        ) &&
+                    new Date(data.end.slice(0, 10)).getTime() >=
+                        new Date(
+                            `${
+                                currentMonth - 1 >= 0
+                                    ? currentYear
+                                    : currentYear - 1
+                            }-${(
+                                (currentMonth - 1 >= 0
+                                    ? currentMonth - 1
+                                    : 11) + 1
+                            )
+                                .toString()
+                                .padStart(2, "0")}-${i
+                                .toString()
+                                .padStart(2, "0")}`
+                        )
+                );
+            });
             setPrevCal((prev) => {
                 return [
                     ...prev,
@@ -60,6 +106,8 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         type={"prev"}
                         setHighlight={setHighlight}
                         isHighlight={false}
+                        todayCal={todayCal}
+                        todayVac={todayVac}
                     ></Day>,
                 ];
             });
@@ -71,6 +119,8 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
         setHighlight,
         currentMonth,
         currentYear,
+        calendarData,
+        vacationData,
     ]);
     useEffect(() => {
         // 이번달 만들기
@@ -134,6 +184,50 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
         // 다음달 만들기
         setNextCal([]);
         for (let i = 1; i <= 6 - nextDay; i++) {
+            const todayCal = calendarData.filter((data) => {
+                return (
+                    data.start.slice(0, 10) ===
+                    `${
+                        currentMonth + 1 > 11 ? currentYear + 1 : currentYear
+                    }-${((currentMonth + 1 > 11 ? 0 : currentMonth + 1) + 1)
+                        .toString()
+                        .padStart(2, "0")}-${i.toString().padStart(2, "0")}`
+                );
+            });
+            const todayVac = vacationData.filter((data) => {
+                return (
+                    new Date(data.start.slice(0, 10)).getTime() <=
+                        new Date(
+                            `${
+                                currentMonth + 1 > 11
+                                    ? currentYear + 1
+                                    : currentYear
+                            }-${(
+                                (currentMonth + 1 > 11 ? 0 : currentMonth + 1) +
+                                1
+                            )
+                                .toString()
+                                .padStart(2, "0")}-${i
+                                .toString()
+                                .padStart(2, "0")}`
+                        ) &&
+                    new Date(data.end.slice(0, 10)).getTime() >=
+                        new Date(
+                            `${
+                                currentMonth + 1 > 11
+                                    ? currentYear + 1
+                                    : currentYear
+                            }-${(
+                                (currentMonth + 1 > 11 ? 0 : currentMonth + 1) +
+                                1
+                            )
+                                .toString()
+                                .padStart(2, "0")}-${i
+                                .toString()
+                                .padStart(2, "0")}`
+                        )
+                );
+            });
             setNextCal((prev) => {
                 return [
                     ...prev,
@@ -149,11 +243,21 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         type={"next"}
                         setHighlight={setHighlight}
                         isHighlight={false}
+                        todayCal={todayCal}
+                        todayVac={todayVac}
                     ></Day>,
                 ];
             });
         }
-    }, [nextDay, currentDate, setHighlight, currentMonth, currentYear]);
+    }, [
+        nextDay,
+        currentDate,
+        setHighlight,
+        currentMonth,
+        currentYear,
+        calendarData,
+        vacationData,
+    ]);
 
     return (
         <div className={style.Calendar}>
