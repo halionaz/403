@@ -13,6 +13,8 @@ export default function Header({
     pointData,
     usedPoint,
     totalPoint,
+    vacationData,
+    allVacationData
 }) {
     const [isNoticeOn, setIsNoticeOn] = useState(false);
     const [isPointOn, setIsPointOn] = useState(false);
@@ -99,7 +101,7 @@ export default function Header({
                 usedPoint={usedPoint}
                 totalPoint={totalPoint}
             />
-            <Vacation isOn={isVacationOn} />
+            <Vacation isOn={isVacationOn} vacData={allVacationData} />
             <BackToday
                 notToday={notToday}
                 setHighlight={setHighlight}
