@@ -15,20 +15,20 @@
     text-align: center;
     border-radius:5px;
     background-color: rgb(247, 246, 243);
-
+    
     flex-direction: column;
-
+    
     cursor: pointer;
+}
+.box:hover{
+    background-color: rgb(185, 185, 185);
 }
 .select{
     background-color: rgb(235, 87, 87, 0.5);
 }
-.Day:nth-child(7n+1) {
+.select:hover{
+    background-color: rgba(158, 60, 60, 0.5);
+}
+.Day:nth-child(7n+1), .Day:nth-child(7n){
     background-color: rgba(237, 42, 97, 0.2);
-}
-.Day:nth-child(7n){
-    background-color: rgba(60, 111, 250, 0.2);
-}
-.Day:hover{
-    background-color: rgb(221, 220, 215);
 }
