@@ -91,6 +91,15 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         )
                 );
             });
+            let isOff = false;
+            todayCal.forEach((cal) => {
+                if (cal.title === "당직 오프") {
+                    isOff = true;
+                }
+            });
+            if (todayVac.length !== 0) {
+                isOff = true;
+            }
             setPrevCal((prev) => {
                 return [
                     ...prev,
@@ -108,6 +117,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         isHighlight={false}
                         todayCal={todayCal}
                         todayVac={todayVac}
+                        isOff={isOff}
                     ></Day>,
                 ];
             });
@@ -154,6 +164,15 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         )
                 );
             });
+            let isOff = false;
+            todayCal.forEach((cal) => {
+                if (cal.title === "당직 오프") {
+                    isOff = true;
+                }
+            });
+            if (todayVac.length !== 0) {
+                isOff = true;
+            }
             setCurCal((prev) => {
                 return [
                     ...prev,
@@ -167,6 +186,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         isHighlight={currentDate === i ? true : false}
                         todayCal={todayCal}
                         todayVac={todayVac}
+                        isOff={isOff}
                     ></Day>,
                 ];
             });
@@ -228,6 +248,15 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         )
                 );
             });
+            let isOff = false;
+            todayCal.forEach((cal) => {
+                if (cal.title === "당직 오프") {
+                    isOff = true;
+                }
+            });
+            if (todayVac.length !== 0) {
+                isOff = true;
+            }
             setNextCal((prev) => {
                 return [
                     ...prev,
@@ -245,6 +274,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         isHighlight={false}
                         todayCal={todayCal}
                         todayVac={todayVac}
+                        isOff={isOff}
                     ></Day>,
                 ];
             });

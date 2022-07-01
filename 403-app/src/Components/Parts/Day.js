@@ -9,9 +9,10 @@ export default function Day({
     setHighlight,
     todayCal,
     todayVac,
+    isOff,
 }) {
     return (
-        <div className={style.Day}>
+        <div className={`${style.Day} ${isOff ? style.off : ""}`}>
             <div
                 className={`${style.box} ${isHighlight ? style.select : ""}`}
                 onClick={() => {
