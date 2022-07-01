@@ -14,7 +14,9 @@ export default function Day({
     return (
         <div className={`${style.Day} ${isOff ? style.off : ""}`}>
             <div
-                className={`${style.box} ${isHighlight ? style.select : ""}`}
+                className={`${style.box} ${isHighlight ? style.select : ""} ${
+                    type === "cur" ? style.cur : ""
+                }`}
                 onClick={() => {
                     setHighlight(
                         new Date(
