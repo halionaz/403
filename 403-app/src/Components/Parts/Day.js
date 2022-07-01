@@ -1,3 +1,4 @@
+import { useState } from "react";
 import style from "../style/Day.module.css";
 
 export default function Day({
@@ -10,10 +11,14 @@ export default function Day({
     todayCal,
     todayVac,
 }) {
+    const [isOff, setIsOff] = useState(false);
+
     return (
-        <div className={style.Day}>
+        <div className={`${style.Day} ${isOff ? style.off : ""}`}>
             <div
-                className={`${style.box} ${isHighlight ? style.select : ""}`}
+                className={`${style.box} ${isHighlight ? style.select : ""} ${
+                    type === "cur" ? style.cur : ""
+                }`}
                 onClick={() => {
                     setHighlight(
                         new Date(
@@ -31,11 +36,17 @@ export default function Day({
                     {todayCal === undefined
                         ? ""
                         : todayCal.map((cal, i) => {
+                              if (cal.title === "당직 오프" && !isOff) {
+                                  setIsOff(true);
+                              }
                               return <div key={`cal ${i}`}>{cal.title}</div>;
                           })}
                     {todayVac === undefined
                         ? ""
                         : todayVac.map((cal, i) => {
+                              if (cal.type !== "외출" && !isOff) {
+                                  setIsOff(true);
+                              }
                               return <div key={`vac ${i}`}>{cal.title}</div>;
                           })}
                 </div>
