@@ -20,18 +20,15 @@
     
     cursor: pointer;
 }
-.cur{
-    background-color: rgb(233, 232, 231);
-}
 .box:hover{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(185, 185, 185);
 }
 .select{
     background-color: rgb(235, 87, 87, 0.5);
 }
 .select:hover{
-    background-color: rgb(235, 87, 87, 0.8);
+    background-color: rgba(158, 60, 60, 0.5);
 }
-.Day:nth-child(7n+1), .Day:nth-child(7n), .off{
+.Day:nth-child(7n+1), .Day:nth-child(7n){
     background-color: rgba(237, 42, 97, 0.2);
 }
