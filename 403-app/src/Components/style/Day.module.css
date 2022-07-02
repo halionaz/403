@@ -32,6 +32,9 @@
 .select:hover{
     background-color: rgba(235, 87, 87, 0.8);
 }
-.Day:nth-child(7n+1), .Day:nth-child(7n), .off{
+.Day:nth-child(7n+1), .off{
     background-color: rgba(237, 42, 97, 0.2);
+}
+.Day:nth-child(7n){
+    background-color: rgba(60, 111, 250, 0.2);
 }
