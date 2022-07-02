@@ -34,10 +34,6 @@ export default function Header({
         }
     }, [highlight, today]);
 
-    useEffect(() => {
-        console.log(notToday);
-    }, [notToday]);
-
     return (
         <header className={style.Header}>
             <div className={`${style.title} ${style.item}`}>
