@@ -10,6 +10,7 @@ export default function Day({
     todayCal,
     todayVac,
     isOff,
+    etc,
 }) {
     return (
         <div className={`${style.Day} ${isOff ? style.off : ""}`}>
@@ -31,6 +32,7 @@ export default function Day({
             >
                 <div className={style.num}>{num}</div>
                 <div className={style.todayCal}>
+                    {etc && <div>{etc}</div>}
                     {todayCal === undefined
                         ? ""
                         : todayCal.map((cal, i) => {

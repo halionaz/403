@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import style from "../style/Calendar.module.css";
 import Day from "./Day";
 
-const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
+const Calendar = ({
+    highlight,
+    setHighlight,
+    calendarData,
+    vacationData,
+    holidays,
+}) => {
     const [currentYear, setCurrentYear] = useState(0);
     const [currentMonth, setCurrentMonth] = useState(0);
     const [currentDate, setCurrentDate] = useState(0);
@@ -100,6 +106,13 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
             if (todayVac.length !== 0) {
                 isOff = true;
             }
+            let etc = null;
+            holidays.forEach((hol) => {
+                if (currentMonth === hol.month && i === hol.date) {
+                    isOff = true;
+                    etc = hol.title;
+                }
+            });
             setPrevCal((prev) => {
                 return [
                     ...prev,
@@ -118,6 +131,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         todayCal={todayCal}
                         todayVac={todayVac}
                         isOff={isOff}
+                        etc={etc}
                     ></Day>,
                 ];
             });
@@ -131,6 +145,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
         currentYear,
         calendarData,
         vacationData,
+        holidays,
     ]);
     useEffect(() => {
         // 이번달 만들기
@@ -173,6 +188,13 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
             if (todayVac.length !== 0) {
                 isOff = true;
             }
+            let etc = null;
+            holidays.forEach((hol) => {
+                if (currentMonth + 1 === hol.month && i === hol.date) {
+                    isOff = true;
+                    etc = hol.title;
+                }
+            });
             setCurCal((prev) => {
                 return [
                     ...prev,
@@ -187,6 +209,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         todayCal={todayCal}
                         todayVac={todayVac}
                         isOff={isOff}
+                        etc={etc}
                     ></Day>,
                 ];
             });
@@ -199,6 +222,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
         currentYear,
         calendarData,
         vacationData,
+        holidays,
     ]);
     useEffect(() => {
         // 다음달 만들기
@@ -257,6 +281,17 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
             if (todayVac.length !== 0) {
                 isOff = true;
             }
+            let etc = null;
+            holidays.forEach((hol) => {
+                if (
+                    (currentMonth + 2 > 12 ? 1 : currentMonth + 2) ===
+                        hol.month &&
+                    i === hol.date
+                ) {
+                    isOff = true;
+                    etc = hol.title;
+                }
+            });
             setNextCal((prev) => {
                 return [
                     ...prev,
@@ -275,6 +310,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
                         todayCal={todayCal}
                         todayVac={todayVac}
                         isOff={isOff}
+                        etc={etc}
                     ></Day>,
                 ];
             });
@@ -287,6 +323,7 @@ const Calendar = ({ highlight, setHighlight, calendarData, vacationData }) => {
         currentYear,
         calendarData,
         vacationData,
+        holidays,
     ]);
 
     return (

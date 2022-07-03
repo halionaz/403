@@ -3,7 +3,14 @@ import Footer from "./Parts/Footer";
 import Header from "./Parts/Head/Header";
 import Main from "./Parts/Main";
 import "./style/App.css";
-import { pointData, enlistmentDate, calendarData, vacationData, vacationHoldingData } from "../secret/DB";
+import {
+    pointData,
+    enlistmentDate,
+    calendarData,
+    vacationData,
+    vacationHoldingData,
+    holidays,
+} from "../secret/DB";
 
 const today = new Date();
 
@@ -31,16 +38,16 @@ function App() {
         );
         setVacData(
             // 날짜 순으로 정렬
-            vacationHoldingData.sort((a,b) => {
-                if(a.issueDate < b.issueDate){
+            vacationHoldingData.sort((a, b) => {
+                if (a.issueDate < b.issueDate) {
                     return -1;
                 }
-                if(b.issueDate < a.issueDate){
+                if (b.issueDate < a.issueDate) {
                     return 1;
                 }
                 return 0;
             })
-        )
+        );
         setStartDate(enlistmentDate);
     }, []);
 
@@ -73,7 +80,13 @@ function App() {
                 vacationData={vacationData}
                 allVacationData={vacData}
             />
-            <Main highlight={highlight} setHighlight={setHighlight} calendarData = {calendarData} vacationData={vacationData} />
+            <Main
+                highlight={highlight}
+                setHighlight={setHighlight}
+                calendarData={calendarData}
+                vacationData={vacationData}
+                holidays={holidays}
+            />
             <Footer
                 today={today}
                 highlight={highlight}
