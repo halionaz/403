@@ -22,23 +22,34 @@ function App() {
     const [totalPoint, setTotalPoint] = useState(0);
     const [vacData, setVacData] = useState(null);
 
+    let timer;
+
     window.addEventListener("mousewheel", (e) => {
-        const value = e.deltaY;
-        console.log(value);
-        if (value >= 100) {
-            setHighlight((prev) => {
-                return new Date(prev.getFullYear(), prev.getMonth() + 1, 1);
-            });
-        } else if (value <= -100) {
-            setHighlight((prev) => {
-                return new Date(prev.getFullYear(), prev.getMonth(), 0);
-            });
+
+        if(timer){
+            clearTimeout(timer);
         }
+        
+        timer = setTimeout(() => {
+            const value = e.deltaY;
+            console.log(`${value} 이것만 실행`);
+            if (value >= 100) {
+                setHighlight((prev) => {
+                    return new Date(prev.getFullYear(), prev.getMonth() + 1, 1);
+                });
+            } else if (value <= -100) {
+                setHighlight((prev) => {
+                    return new Date(prev.getFullYear(), prev.getMonth(), 0);
+                });
+            }
+        }, 200);
+
     });
     
     useEffect(()=>{
         
-        console.log(highlight)
+        console.log(highlight);
+
     }, [highlight]);
 
     useEffect(() => {
