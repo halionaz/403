@@ -8,6 +8,7 @@ export default function Main({
     vacationData,
     holidays,
 }) {
+
     return (
         <div className={style.Main}>
             <div className={style.bar}></div>

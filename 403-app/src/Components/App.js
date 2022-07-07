@@ -22,6 +22,25 @@ function App() {
     const [totalPoint, setTotalPoint] = useState(0);
     const [vacData, setVacData] = useState(null);
 
+    window.addEventListener("mousewheel", (e) => {
+        const value = e.deltaY;
+        console.log(value);
+        if (value >= 100) {
+            setHighlight((prev) => {
+                return new Date(prev.getFullYear(), prev.getMonth() + 1, 1);
+            });
+        } else if (value <= -100) {
+            setHighlight((prev) => {
+                return new Date(prev.getFullYear(), prev.getMonth(), 0);
+            });
+        }
+    });
+    
+    useEffect(()=>{
+        
+        console.log(highlight)
+    }, [highlight]);
+
     useEffect(() => {
         // 서버에서 가점 데이터, 입대일, 일정 데이터, 휴가 데이터 가져옴
         setPointHistory(
