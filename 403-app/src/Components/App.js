@@ -11,6 +11,7 @@ import {
     vacationHoldingData,
     holidays,
 } from "../secret/DB";
+import _ from "underscore";
 
 const today = new Date();
 
@@ -22,15 +23,9 @@ function App() {
     const [totalPoint, setTotalPoint] = useState(0);
     const [vacData, setVacData] = useState(null);
 
-    let timer;
-
-    window.addEventListener("mousewheel", (e) => {
-
-        if(timer){
-            clearTimeout(timer);
-        }
-        
-        timer = setTimeout(() => {
+    window.addEventListener(
+        "mousewheel",
+        _.debounce((e) => {
             const value = e.deltaY;
             console.log(`${value} 이것만 실행`);
             if (value >= 100) {
@@ -42,14 +37,11 @@ function App() {
                     return new Date(prev.getFullYear(), prev.getMonth(), 0);
                 });
             }
-        }, 200);
+        })
+    );
 
-    });
-    
-    useEffect(()=>{
-        
+    useEffect(() => {
         console.log(highlight);
-
     }, [highlight]);
 
     useEffect(() => {
